@@ -14,7 +14,8 @@ const app = express();
 app.use( 
     cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://poetic-gingersnap-cddcff.netlify.app"]
   })
  );
 // configure cors right after instantiating express
@@ -29,36 +30,10 @@ app.use(
    
 
 TuitsController(app);
-HelloController(app)
-UserController(app)
+HelloController(app);
+UserController(app);
 AuthController(app);
-const port = process.env.PORT || 4000;
-
-// app.get('/hello', (req, res) => {
-//       res.send('Hello World! How are you???afkjhsdjjfkd??');
-
-// });
 
 
-
-
-// app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
-
-// app.get('/hello/:name', (req, res) => {
-//     res.send(`hello ${req.params.name} is about page!`)})
-
-// app.get('/users/:username', (req, res) => {
-//     res.send(
-//         {
-//             username: req.params.username,
-//             password: '123456'
-//         }
-
-//     )
-
-// })
-
-
- 
 app.listen(process.env.PORT || 4000);
 // app.listen(4000)

@@ -9,12 +9,12 @@ const AuthController = (app) => {
       res.sendStatus(409);
       return;
     }
-    const tmp=req.body;
-    tmp._id = (new Date()).getTime() + '';
-    const newUser = usersDao.createUser(tmp);
+    const newUser = {  _id: new Date().getTime() + "", email:req.body.email, username:req.body.username, password:req.body.password  }
+    usersDao.createUser(newUser);
     currentUserVar = newUser;
     // req.session["currentUser"] = tmp;
-    res.json(tmp);
+    console.log(newUser)
+    res.json(newUser);
   };
 
   const login = (req, res) => {
@@ -45,12 +45,23 @@ const AuthController = (app) => {
   };
 
   const update   = (req, res) => {
+    const username = req.body.username;
+    const updateInfo = req.body;
+    const user = usersDao.findUserByUsername(username);
+    if (!user) {
+        res.sendStatus(404)
+    } else {
+        const userId = user._id;
+        usersDao.updateUser(userId, updateInfo);
+        res.sendStatus(200);
+    }
 
-    const userId = req.params['uid'];
-    const updates = req.body;
-    usersDao.updateUser(userId,updates);
-    res.json(updates);
-    //res.sendStatus(200);
+
+    // const userId = req.params['uid'];
+    // const updates = req.body;
+    // usersDao.updateUser(userId,updates);
+    // res.json(updates);
+    // //res.sendStatus(200);
 
   };
 
@@ -59,6 +70,6 @@ const AuthController = (app) => {
   app.post("/api/users/login",    login);
   app.post("/api/users/profile",  profile);
   app.post("/api/users/logout",   logout);
-  app.put ("/api/users/:uid",          update);
+  app.put ("/api/users/:uid",     update);
 };
 export default AuthController;

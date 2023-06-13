@@ -1,6 +1,21 @@
 export default [
-    { "username": "alice",   "type": "FACULTY", "_id": "123" },
-    { "username": "bob",     "type": "STUDENT", "_id": "234" },
-    { "username": "charlie", "type": "FACULTY", "_id": "345" }
+    {
+        _id: "1",
+        username: "alice",
+        password: "1234",
+        email:"c",
+      },
+      {
+        _id: "2",
+        username: "bob",
+        password: "1234",
+        email:"a",
+      },
+      {
+        _id: "3",
+        username: "charly",
+        password: "1234",
+        email:"b",
+      },
   ]
   
