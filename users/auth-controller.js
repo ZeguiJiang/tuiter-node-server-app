@@ -9,7 +9,7 @@ const AuthController = (app) => {
       res.sendStatus(409);
       return;
     }
-    const newUser = {  _id: new Date().getTime() + "", email:req.body.email, username:req.body.username, password:req.body.password  }
+    const newUser = {   _id: new Date().getTime() + "", firstName:req.body.firstName, lastName:req.body.lastName, username:req.body.username, password:req.body.password  }
     usersDao.createUser(newUser);
     currentUserVar = newUser;
     // req.session["currentUser"] = tmp;
@@ -39,10 +39,13 @@ const AuthController = (app) => {
     res.json(currentUser);
   };
 
+
   const logout = async (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
+    // currentUserVar = null;
   };
+
 
   const update   = (req, res) => {
     const username = req.body.username;
@@ -55,14 +58,6 @@ const AuthController = (app) => {
         usersDao.updateUser(userId, updateInfo);
         res.sendStatus(200);
     }
-
-
-    // const userId = req.params['uid'];
-    // const updates = req.body;
-    // usersDao.updateUser(userId,updates);
-    // res.json(updates);
-    // //res.sendStatus(200);
-
   };
 
 
