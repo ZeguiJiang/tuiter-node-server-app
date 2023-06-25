@@ -22,7 +22,7 @@ app.use(
     cors({
     credentials: true,
     // origin: "http://localhost:3000",
-    origin: ["http://localhost:3000", "https://poetic-gingersnap-cddcff.netlify.app"]
+    origin: ["http://localhost:3000", "https://poetic-gingersnap-cddcff.netlify.app", "https://lighthearted-starlight-ee934e.netlify.app"]
   })
  );
 // configure cors right after instantiating express
